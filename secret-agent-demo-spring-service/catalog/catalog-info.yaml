@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: secret-agent
+  annotations:
+    "backstage.io/kubernetes-label-selector": "app.kubernetes.io/part-of=secret-agent"
+spec:
+  type: service
+  lifecycle: experimental
+  owner: default-team
+  providesApis:
+    - secret-agent

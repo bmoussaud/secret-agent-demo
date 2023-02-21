@@ -1,0 +1,90 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  annotations:
+    kapp.k14s.io/identity: v1;kcd-fr-23/serving.knative.dev/Service/sb-nodejs-demo;serving.knative.dev/v1
+    kapp.k14s.io/original: '{"apiVersion":"serving.knative.dev/v1","kind":"Service","metadata":{"annotations":{"kbld.k14s.io/images":"null\n","ootb.apps.tanzu.vmware.com/apidescriptor-ref":"true","ootb.apps.tanzu.vmware.com/servicebinding-workload":"true"},"labels":{"app.kubernetes.io/component":"run","app.kubernetes.io/name":"nodejs","app.kubernetes.io/part-of":"sb-nodejs-demo","apps.tanzu.vmware.com/has-tests":"true","apps.tanzu.vmware.com/workload-type":"web","carto.run/workload-name":"sb-nodejs-demo","kapp.k14s.io/app":"1676902090979989202","kapp.k14s.io/association":"v1.554dca4e36f04fab722eefd04fe4b644"},"name":"sb-nodejs-demo","namespace":"kcd-fr-23"},"spec":{"template":{"metadata":{"annotations":{"apps.tanzu.vmware.com/live-update":"true","autoscaling.knative.dev/minScale":"1","conventions.carto.run/applied-conventions":"developer-conventions/add-source-image-label\nspring-boot-convention/auto-configure-actuators-check\nspring-boot-convention/app-live-view-appflavour-check\nappliveview-sample/app-live-view-appflavour-check","developer.apps.tanzu.vmware.com/image-source-digest":"akseutap4registry.azurecr.io/sb-nodejs-demo:latest@sha256:6915b9eb6dc2edb56327a06e4cf49bdb4d85c1bd9fda5836d7fffb8c96a414df","developer.conventions/target-containers":"workload"},"labels":{"app.kubernetes.io/component":"run","app.kubernetes.io/name":"nodejs","app.kubernetes.io/part-of":"sb-nodejs-demo","apps.tanzu.vmware.com/has-tests":"true","apps.tanzu.vmware.com/workload-type":"web","carto.run/workload-name":"sb-nodejs-demo"}},"spec":{"containers":[{"image":"akseutap4registry.azurecr.io/library/tanzu-supply-chain/sb-nodejs-demo-kcd-fr-23@sha256:ae391442545e3c8811ed4e0fe8fae019c8dbcbd0eb9e1065ef68d354b68af689","name":"workload","resources":{},"securityContext":{"runAsUser":1000}}],"serviceAccountName":"default"}}}}'
+    kapp.k14s.io/original-diff-md5: 88fca26f1ad6a6855d9728ff08541341
+    kbld.k14s.io/images: |
+      null
+    ootb.apps.tanzu.vmware.com/apidescriptor-ref: "true"
+    ootb.apps.tanzu.vmware.com/servicebinding-workload: "true"
+    serving.knative.dev/creator: system:serviceaccount:kcd-fr-23:default
+    serving.knative.dev/lastModifier: system:serviceaccount:service-bindings:controller
+  creationTimestamp: "2023-02-20T14:08:11Z"
+  generation: 29
+  labels:
+    app.kubernetes.io/component: run
+    app.kubernetes.io/name: nodejs
+    app.kubernetes.io/part-of: sb-nodejs-demo
+    apps.tanzu.vmware.com/has-tests: "true"
+    apps.tanzu.vmware.com/workload-type: web
+    carto.run/workload-name: sb-nodejs-demo
+    kapp.k14s.io/app: "1676902090979989202"
+    kapp.k14s.io/association: v1.554dca4e36f04fab722eefd04fe4b644
+  name: sb-nodejs-demo
+  namespace: kcd-fr-23
+  resourceVersion: "21657486"
+  uid: ca941803-affe-46fc-aa95-d3a226535796
+spec:
+  template:
+    metadata:
+      annotations:
+        apps.tanzu.vmware.com/live-update: "true"
+        autoscaling.knative.dev/minScale: "1"
+        conventions.carto.run/applied-conventions: |-
+          developer-conventions/add-source-image-label
+          spring-boot-convention/auto-configure-actuators-check
+          spring-boot-convention/app-live-view-appflavour-check
+          appliveview-sample/app-live-view-appflavour-check
+        developer.apps.tanzu.vmware.com/image-source-digest: akseutap4registry.azurecr.io/sb-nodejs-demo:latest@sha256:6915b9eb6dc2edb56327a06e4cf49bdb4d85c1bd9fda5836d7fffb8c96a414df
+        developer.conventions/target-containers: workload
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/component: run
+        app.kubernetes.io/name: nodejs
+        app.kubernetes.io/part-of: sb-nodejs-demo
+        apps.tanzu.vmware.com/has-tests: "true"
+        apps.tanzu.vmware.com/workload-type: web
+        carto.run/workload-name: sb-nodejs-demo
+    spec:
+      containerConcurrency: 0
+      containers:
+      - env:
+        - name: SERVICE_BINDING_ROOT
+          value: /bindings
+        image: akseutap4registry.azurecr.io/library/tanzu-supply-chain/sb-nodejs-demo-kcd-fr-23@sha256:ae391442545e3c8811ed4e0fe8fae019c8dbcbd0eb9e1065ef68d354b68af689
+        name: workload
+        readinessProbe:
+          successThreshold: 1
+          tcpSocket:
+            port: 0
+        resources: {}
+        securityContext:
+          runAsUser: 1000
+      serviceAccountName: default
+      timeoutSeconds: 300
+  traffic:
+  - latestRevision: true
+    percent: 100
+status:
+  address:
+    url: http://sb-nodejs-demo.kcd-fr-23.svc.cluster.local
+  conditions:
+  - lastTransitionTime: "2023-02-22T10:19:31Z"
+    status: "True"
+    type: ConfigurationsReady
+  - lastTransitionTime: "2023-02-22T10:19:32Z"
+    status: "True"
+    type: Ready
+  - lastTransitionTime: "2023-02-22T10:19:32Z"
+    status: "True"
+    type: RoutesReady
+  latestCreatedRevisionName: sb-nodejs-demo-00019
+  latestReadyRevisionName: sb-nodejs-demo-00019
+  observedGeneration: 29
+  traffic:
+  - latestRevision: true
+    percent: 100
+    revisionName: sb-nodejs-demo-00019
+  url: https://sb-nodejs-demo.kcd-fr-23.tap4.eu.aks.mytanzu.xyz

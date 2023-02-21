@@ -1,0 +1,29 @@
+SOURCE_IMAGE = 'akseutap4registry.azurecr.io/secret-agent-source'
+LOCAL_PATH ='.'
+OUTPUT_TO_NULL_COMMAND = os.getenv("OUTPUT_TO_NULL_COMMAND", default=' > /dev/null ')
+NAMESPACE = 'kcd-fr-23'
+K8S_TEST_CONTEXT = os.getenv("K8S_TEST_CONTEXT", default='aks-eu-tap-4')
+
+allow_k8s_contexts(K8S_TEST_CONTEXT)
+
+k8s_custom_deploy(
+    'secret-agent-java',
+    apply_cmd="tanzu apps workload apply -f config/workload.yaml --update-strategy replace --debug --live-update" +
+              " --local-path " + LOCAL_PATH +
+              " --source-image " + SOURCE_IMAGE +
+              " --namespace " + NAMESPACE +
+              " --yes " +
+              OUTPUT_TO_NULL_COMMAND +
+              " && kubectl get workload secret-agent-java --namespace " + NAMESPACE + " -o yaml",
+    delete_cmd="tanzu apps workload delete -f config/workload.yaml --namespace " + NAMESPACE + " --yes",
+    deps=['pom.xml', './target/classes'],
+    container_selector='workload',
+    live_update=[
+      sync('./target/classes', '/workspace/BOOT-INF/classes')
+    ]
+)
+
+k8s_resource('secret-agent-java', port_forwards=["8080:8080"],
+            extra_pod_selectors=[{'carto.run/workload-name': 'secret-agent-java','app.kubernetes.io/part-of': 'secret-agent-java'}])
+
+

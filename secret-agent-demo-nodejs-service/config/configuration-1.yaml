@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: configuration-1
+  labels:
+    app.kubernetes.io/name: nodejs
+    app.kubernetes.io/part-of: sb-nodejs-demo
+type: servicebinding.io/configuration
+stringData:
+  type: app-configuration
+  provider: homemade
+  A_TITLE: NodeJS App with Service Binding
+  PORT: "8080"
+  A_ENV: Kubernetes Community days - France 2023

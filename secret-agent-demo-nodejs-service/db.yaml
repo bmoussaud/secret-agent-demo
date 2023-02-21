@@ -1,0 +1,27 @@
+apiVersion: sql.tanzu.vmware.com/v1
+kind: Postgres
+metadata:
+  labels:
+    app: postgres
+  name: kcd-fr-23-database  
+spec:
+  cpu: 800m
+  memory: 800Mi
+  monitorStorageSize: 1G
+  persistentVolumeClaimPolicy: delete
+  pgConfig:
+    appUser: admin
+    dbname: kcd-fr-23-database
+    readOnlyUser: pgrouser
+    readWriteUser: pgrwuser
+    username: pgadmin
+  postgresVersion:
+    name: postgres-15
+  sharedMemorySize: 64Mi
+  storageSize: 800M
+status: 
+  binding:
+    name: kcd-fr-23-database-app-user-db-secret
+  currentState: Running
+  dbVersion: "15.1"
+  observedGeneration: 1

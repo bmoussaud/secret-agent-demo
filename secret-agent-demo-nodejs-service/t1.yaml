@@ -1,0 +1,55 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: sb-nodejs-demo-alone
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/minScale: "1"
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/component: run
+        app.kubernetes.io/name: nodejs
+        app.kubernetes.io/part-of: sb-nodejs-demo
+    spec:
+      containerConcurrency: 0
+      containers:
+      - env:
+        - name: SERVICE_BINDING_ROOT
+          value: /bindings
+        - name: BENOIT_ENV
+          valueFrom:
+            secretKeyRef:
+              key: A_ENV
+              name: configuration-2
+        - name: BENOIT_TITLE
+          valueFrom:
+            secretKeyRef:
+              key: A_TITLE
+              name: configuration-2
+        image: akseutap4registry.azurecr.io/library/tanzu-supply-chain/sb-nodejs-demo-kcd-fr-23@sha256:ae391442545e3c8811ed4e0fe8fae019c8dbcbd0eb9e1065ef68d354b68af689
+        name: workload
+        readinessProbe:
+          successThreshold: 1
+          tcpSocket:
+            port: 0
+        resources: {}
+        securityContext:
+          runAsUser: 1000
+        volumeMounts:
+        - mountPath: /bindings/app-config
+          name: binding-41b57de47b6229f2bfb8792bb234168f9310b8d2
+          readOnly: true
+      enableServiceLinks: false
+      serviceAccountName: default
+      timeoutSeconds: 300
+      volumes:
+      - name: binding-41b57de47b6229f2bfb8792bb234168f9310b8d2
+        projected:
+          sources:
+          - secret:
+              name: configuration-2
+  traffic:
+  - latestRevision: true
+    percent: 100

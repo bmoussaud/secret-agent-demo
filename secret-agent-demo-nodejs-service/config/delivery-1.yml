@@ -1,0 +1,26 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: sb-nodejs-demo-1  
+  labels:
+    app.kubernetes.io/name: nodejs
+    app.kubernetes.io/part-of: sb-nodejs-demo    
+    app.kubernetes.io/component: run    
+spec:
+  template:
+    metadata:
+      annotations:        
+        autoscaling.knative.dev/minScale: "1"        
+      labels:
+        app.kubernetes.io/component: run
+        app.kubernetes.io/name: nodejs
+        app.kubernetes.io/part-of: sb-nodejs-demo        
+    spec:
+      containers:
+      - image: akseutap4registry.azurecr.io/library/tanzu-supply-chain/sb-nodejs-demo-kcd-fr-23@sha256:ae391442545e3c8811ed4e0fe8fae019c8dbcbd0eb9e1065ef68d354b68af689
+        name: workload
+        resources: {}
+        securityContext:
+          runAsUser: 1000
+      serviceAccountName: default
+
