@@ -1,90 +1,293 @@
-apiVersion: serving.knative.dev/v1
-kind: Service
+apiVersion: v1
+kind: Pod
 metadata:
   annotations:
-    kapp.k14s.io/identity: v1;kcd-fr-23/serving.knative.dev/Service/sb-nodejs-demo;serving.knative.dev/v1
-    kapp.k14s.io/original: '{"apiVersion":"serving.knative.dev/v1","kind":"Service","metadata":{"annotations":{"kbld.k14s.io/images":"null\n","ootb.apps.tanzu.vmware.com/apidescriptor-ref":"true","ootb.apps.tanzu.vmware.com/servicebinding-workload":"true"},"labels":{"app.kubernetes.io/component":"run","app.kubernetes.io/name":"nodejs","app.kubernetes.io/part-of":"sb-nodejs-demo","apps.tanzu.vmware.com/has-tests":"true","apps.tanzu.vmware.com/workload-type":"web","carto.run/workload-name":"sb-nodejs-demo","kapp.k14s.io/app":"1676902090979989202","kapp.k14s.io/association":"v1.554dca4e36f04fab722eefd04fe4b644"},"name":"sb-nodejs-demo","namespace":"kcd-fr-23"},"spec":{"template":{"metadata":{"annotations":{"apps.tanzu.vmware.com/live-update":"true","autoscaling.knative.dev/minScale":"1","conventions.carto.run/applied-conventions":"developer-conventions/add-source-image-label\nspring-boot-convention/auto-configure-actuators-check\nspring-boot-convention/app-live-view-appflavour-check\nappliveview-sample/app-live-view-appflavour-check","developer.apps.tanzu.vmware.com/image-source-digest":"akseutap4registry.azurecr.io/sb-nodejs-demo:latest@sha256:6915b9eb6dc2edb56327a06e4cf49bdb4d85c1bd9fda5836d7fffb8c96a414df","developer.conventions/target-containers":"workload"},"labels":{"app.kubernetes.io/component":"run","app.kubernetes.io/name":"nodejs","app.kubernetes.io/part-of":"sb-nodejs-demo","apps.tanzu.vmware.com/has-tests":"true","apps.tanzu.vmware.com/workload-type":"web","carto.run/workload-name":"sb-nodejs-demo"}},"spec":{"containers":[{"image":"akseutap4registry.azurecr.io/library/tanzu-supply-chain/sb-nodejs-demo-kcd-fr-23@sha256:ae391442545e3c8811ed4e0fe8fae019c8dbcbd0eb9e1065ef68d354b68af689","name":"workload","resources":{},"securityContext":{"runAsUser":1000}}],"serviceAccountName":"default"}}}}'
-    kapp.k14s.io/original-diff-md5: 88fca26f1ad6a6855d9728ff08541341
-    kbld.k14s.io/images: |
-      null
-    ootb.apps.tanzu.vmware.com/apidescriptor-ref: "true"
-    ootb.apps.tanzu.vmware.com/servicebinding-workload: "true"
-    serving.knative.dev/creator: system:serviceaccount:kcd-fr-23:default
-    serving.knative.dev/lastModifier: system:serviceaccount:service-bindings:controller
-  creationTimestamp: "2023-02-20T14:08:11Z"
-  generation: 29
+    autoscaling.knative.dev/minScale: "1"
+    kubernetes.io/limit-ranger: 'LimitRanger plugin set: cpu, memory request for container
+      workload; cpu, memory limit for container workload'
+    serving.knative.dev/creator: masterclient
+  creationTimestamp: "2023-04-03T08:57:25Z"
+  generateName: sb-nodejs-demo-1-00001-deployment-5c8fd757bf-
   labels:
+    app: sb-nodejs-demo-1-00001
     app.kubernetes.io/component: run
     app.kubernetes.io/name: nodejs
     app.kubernetes.io/part-of: sb-nodejs-demo
-    apps.tanzu.vmware.com/has-tests: "true"
-    apps.tanzu.vmware.com/workload-type: web
-    carto.run/workload-name: sb-nodejs-demo
-    kapp.k14s.io/app: "1676902090979989202"
-    kapp.k14s.io/association: v1.554dca4e36f04fab722eefd04fe4b644
-  name: sb-nodejs-demo
-  namespace: kcd-fr-23
-  resourceVersion: "21657486"
-  uid: ca941803-affe-46fc-aa95-d3a226535796
+    pod-template-hash: 5c8fd757bf
+    serving.knative.dev/configuration: sb-nodejs-demo-1
+    serving.knative.dev/configurationGeneration: "1"
+    serving.knative.dev/configurationUID: 243f8943-dcfc-4e83-a2aa-c7b0ee82aadc
+    serving.knative.dev/revision: sb-nodejs-demo-1-00001
+    serving.knative.dev/revisionUID: 83155d8c-4953-4ee8-b280-52b0fc5533c4
+    serving.knative.dev/service: sb-nodejs-demo-1
+    serving.knative.dev/serviceUID: 8ed8c550-d644-4d67-a9f4-aa39464d0b70
+  name: sb-nodejs-demo-1-00001-deployment-5c8fd757bf-42lhj
+  namespace: secret-agent
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicaSet
+    name: sb-nodejs-demo-1-00001-deployment-5c8fd757bf
+    uid: 69aae8b1-21f3-4a38-b3a1-322fdeb215a9
+  resourceVersion: "9183231"
+  uid: a1a41ec5-65e0-4c69-ae7d-1118009ddd15
 spec:
-  template:
-    metadata:
-      annotations:
-        apps.tanzu.vmware.com/live-update: "true"
-        autoscaling.knative.dev/minScale: "1"
-        conventions.carto.run/applied-conventions: |-
-          developer-conventions/add-source-image-label
-          spring-boot-convention/auto-configure-actuators-check
-          spring-boot-convention/app-live-view-appflavour-check
-          appliveview-sample/app-live-view-appflavour-check
-        developer.apps.tanzu.vmware.com/image-source-digest: akseutap4registry.azurecr.io/sb-nodejs-demo:latest@sha256:6915b9eb6dc2edb56327a06e4cf49bdb4d85c1bd9fda5836d7fffb8c96a414df
-        developer.conventions/target-containers: workload
-      creationTimestamp: null
-      labels:
-        app.kubernetes.io/component: run
-        app.kubernetes.io/name: nodejs
-        app.kubernetes.io/part-of: sb-nodejs-demo
-        apps.tanzu.vmware.com/has-tests: "true"
-        apps.tanzu.vmware.com/workload-type: web
-        carto.run/workload-name: sb-nodejs-demo
-    spec:
-      containerConcurrency: 0
-      containers:
-      - env:
-        - name: SERVICE_BINDING_ROOT
-          value: /bindings
-        image: akseutap4registry.azurecr.io/library/tanzu-supply-chain/sb-nodejs-demo-kcd-fr-23@sha256:ae391442545e3c8811ed4e0fe8fae019c8dbcbd0eb9e1065ef68d354b68af689
-        name: workload
-        readinessProbe:
-          successThreshold: 1
-          tcpSocket:
-            port: 0
-        resources: {}
-        securityContext:
-          runAsUser: 1000
-      serviceAccountName: default
-      timeoutSeconds: 300
-  traffic:
-  - latestRevision: true
-    percent: 100
+  containers:
+  - env:
+    - name: PORT
+      value: "8080"
+    - name: K_REVISION
+      value: sb-nodejs-demo-1-00001
+    - name: K_CONFIGURATION
+      value: sb-nodejs-demo-1
+    - name: K_SERVICE
+      value: sb-nodejs-demo-1
+    image: akseutap5registry.azurecr.io/library/tanzu-supply-chain/sb-nodejs-demo-secret-agent@sha256:4df5ea70ba337f1d37a38557e2cb31b87b5bb48647960ea641e65f2537c90d42
+    imagePullPolicy: IfNotPresent
+    lifecycle:
+      preStop:
+        httpGet:
+          path: /wait-for-drain
+          port: 8022
+          scheme: HTTP
+    name: workload
+    ports:
+    - containerPort: 8080
+      name: user-port
+      protocol: TCP
+    resources:
+      limits:
+        cpu: 1700m
+        memory: 1500Mi
+      requests:
+        cpu: 100m
+        memory: 500Mi
+    securityContext:
+      runAsUser: 1001
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: FallbackToLogsOnError
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-x6pt4
+      readOnly: true
+  - env:
+    - name: SERVING_NAMESPACE
+      value: secret-agent
+    - name: SERVING_SERVICE
+      value: sb-nodejs-demo-1
+    - name: SERVING_CONFIGURATION
+      value: sb-nodejs-demo-1
+    - name: SERVING_REVISION
+      value: sb-nodejs-demo-1-00001
+    - name: QUEUE_SERVING_PORT
+      value: "8012"
+    - name: QUEUE_SERVING_TLS_PORT
+      value: "8112"
+    - name: CONTAINER_CONCURRENCY
+      value: "0"
+    - name: REVISION_TIMEOUT_SECONDS
+      value: "300"
+    - name: REVISION_RESPONSE_START_TIMEOUT_SECONDS
+      value: "0"
+    - name: REVISION_IDLE_TIMEOUT_SECONDS
+      value: "0"
+    - name: SERVING_POD
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: metadata.name
+    - name: SERVING_POD_IP
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: status.podIP
+    - name: SERVING_LOGGING_CONFIG
+    - name: SERVING_LOGGING_LEVEL
+    - name: SERVING_REQUEST_LOG_TEMPLATE
+      value: '{"httpRequest": {"requestMethod": "{{.Request.Method}}", "requestUrl":
+        "{{js .Request.RequestURI}}", "requestSize": "{{.Request.ContentLength}}",
+        "status": {{.Response.Code}}, "responseSize": "{{.Response.Size}}", "userAgent":
+        "{{js .Request.UserAgent}}", "remoteIp": "{{js .Request.RemoteAddr}}", "serverIp":
+        "{{.Revision.PodIP}}", "referer": "{{js .Request.Referer}}", "latency": "{{.Response.Latency}}s",
+        "protocol": "{{.Request.Proto}}"}, "traceId": "{{index .Request.Header "X-B3-Traceid"}}"}'
+    - name: SERVING_ENABLE_REQUEST_LOG
+      value: "false"
+    - name: SERVING_REQUEST_METRICS_BACKEND
+      value: prometheus
+    - name: TRACING_CONFIG_BACKEND
+      value: none
+    - name: TRACING_CONFIG_ZIPKIN_ENDPOINT
+    - name: TRACING_CONFIG_DEBUG
+      value: "false"
+    - name: TRACING_CONFIG_SAMPLE_RATE
+      value: "0.1"
+    - name: USER_PORT
+      value: "8080"
+    - name: SYSTEM_NAMESPACE
+      value: knative-serving
+    - name: METRICS_DOMAIN
+      value: knative.dev/internal/serving
+    - name: SERVING_READINESS_PROBE
+      value: '{"tcpSocket":{"port":8080,"host":"127.0.0.1"},"successThreshold":1}'
+    - name: ENABLE_PROFILING
+      value: "false"
+    - name: SERVING_ENABLE_PROBE_REQUEST_LOG
+      value: "false"
+    - name: METRICS_COLLECTOR_ADDRESS
+    - name: CONCURRENCY_STATE_ENDPOINT
+    - name: CONCURRENCY_STATE_TOKEN_PATH
+      value: /var/run/secrets/tokens/state-token
+    - name: HOST_IP
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: status.hostIP
+    - name: ENABLE_HTTP2_AUTO_DETECTION
+      value: "false"
+    - name: ROOT_CA
+    image: akseutap5registry.azurecr.io/tanzu-application-platform/tap-packages@sha256:f482d9f34a601f9aae1fa49a267de086e64ebd8670257d4439f1f4b228ffade7
+    imagePullPolicy: IfNotPresent
+    name: queue-proxy
+    ports:
+    - containerPort: 8022
+      name: http-queueadm
+      protocol: TCP
+    - containerPort: 9090
+      name: http-autometric
+      protocol: TCP
+    - containerPort: 9091
+      name: http-usermetric
+      protocol: TCP
+    - containerPort: 8012
+      name: queue-port
+      protocol: TCP
+    - containerPort: 8112
+      name: https-port
+      protocol: TCP
+    readinessProbe:
+      failureThreshold: 3
+      httpGet:
+        httpHeaders:
+        - name: K-Network-Probe
+          value: queue
+        path: /
+        port: 8012
+        scheme: HTTP
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 1
+    resources:
+      limits:
+        cpu: "1"
+        memory: 200Mi
+      requests:
+        cpu: 25m
+        memory: 50Mi
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+        - ALL
+      readOnlyRootFilesystem: true
+      runAsNonRoot: true
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-x6pt4
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: false
+  imagePullSecrets:
+  - name: registries-credentials
+  - name: app-registry
+  - name: tap-registry
+  nodeName: aks-nodepool1-33819521-vmss00001g
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 300
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoSchedule
+    key: node.kubernetes.io/memory-pressure
+    operator: Exists
+  volumes:
+  - name: kube-api-access-x6pt4
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
 status:
-  address:
-    url: http://sb-nodejs-demo.kcd-fr-23.svc.cluster.local
   conditions:
-  - lastTransitionTime: "2023-02-22T10:19:31Z"
+  - lastProbeTime: null
+    lastTransitionTime: "2023-04-03T08:57:25Z"
     status: "True"
-    type: ConfigurationsReady
-  - lastTransitionTime: "2023-02-22T10:19:32Z"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2023-04-03T08:57:26Z"
     status: "True"
     type: Ready
-  - lastTransitionTime: "2023-02-22T10:19:32Z"
+  - lastProbeTime: null
+    lastTransitionTime: "2023-04-03T08:57:26Z"
     status: "True"
-    type: RoutesReady
-  latestCreatedRevisionName: sb-nodejs-demo-00019
-  latestReadyRevisionName: sb-nodejs-demo-00019
-  observedGeneration: 29
-  traffic:
-  - latestRevision: true
-    percent: 100
-    revisionName: sb-nodejs-demo-00019
-  url: https://sb-nodejs-demo.kcd-fr-23.tap4.eu.aks.mytanzu.xyz
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2023-04-03T08:57:25Z"
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://fbcaa1cf644fc28262070cd2993513a2a39b5b185c8699c2e0153d399ed1619d
+    image: sha256:6fe950a39122f1fb4149e3a6e496525e349a59f73362b53a97cf8eb2e132120a
+    imageID: akseutap5registry.azurecr.io/tanzu-application-platform/tap-packages@sha256:f482d9f34a601f9aae1fa49a267de086e64ebd8670257d4439f1f4b228ffade7
+    lastState: {}
+    name: queue-proxy
+    ready: true
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2023-04-03T08:57:25Z"
+  - containerID: containerd://f66c02cca717def47d8ecd6f7839cd879d553fdeca89bfd171b28ce68c2f9058
+    image: sha256:d496b8f3cdabe020140729c217b111a7f464ff53ebd89e384a9688aa42a2257f
+    imageID: akseutap5registry.azurecr.io/library/tanzu-supply-chain/sb-nodejs-demo-secret-agent@sha256:4df5ea70ba337f1d37a38557e2cb31b87b5bb48647960ea641e65f2537c90d42
+    lastState: {}
+    name: workload
+    ready: true
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2023-04-03T08:57:25Z"
+  hostIP: 10.224.0.4
+  phase: Running
+  podIP: 10.244.1.99
+  podIPs:
+  - ip: 10.244.1.99
+  qosClass: Burstable
+  startTime: "2023-04-03T08:57:25Z"

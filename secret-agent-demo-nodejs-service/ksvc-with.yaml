@@ -1,0 +1,38 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  annotations:
+  labels:
+    app.kubernetes.io/component: run
+    app.kubernetes.io/name: nodejs
+    app.kubernetes.io/part-of: sb-nodejs-demo
+  name: sb-nodejs-demo-1  
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/minScale: "1"
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/component: run
+        app.kubernetes.io/name: nodejs
+        app.kubernetes.io/part-of: sb-nodejs-demo
+    spec:     
+      volumes:
+      - name: binding-09323470521d0bfb1e35ddc7e34ae7e662ac3715
+        projected:
+          sources:
+          - secret:
+              name: configuration-1
+      containers:
+      - name: workload 
+        image: my-app:v1
+        securityContext:
+          runAsUser: 1001
+        env:
+        - name: SERVICE_BINDING_ROOT
+          value: /bindings                
+        volumeMounts:
+        - mountPath: /bindings/app-config
+          name: binding-09323470521d0bfb1e35ddc7e34ae7e662ac3715
+          readOnly: true      

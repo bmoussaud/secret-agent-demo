@@ -17,10 +17,13 @@ spec:
         app.kubernetes.io/part-of: sb-nodejs-demo        
     spec:
       containers:
-      - image: akseutap4registry.azurecr.io/library/tanzu-supply-chain/sb-nodejs-demo-kcd-fr-23@sha256:ae391442545e3c8811ed4e0fe8fae019c8dbcbd0eb9e1065ef68d354b68af689
+      - image: akseutap5registry.azurecr.io/library/tanzu-supply-chain/sb-nodejs-demo-secret-agent@sha256:4df5ea70ba337f1d37a38557e2cb31b87b5bb48647960ea641e65f2537c90d42
         name: workload
         resources: {}
         securityContext:
-          runAsUser: 1000
+          runAsUser: 1001
       serviceAccountName: default
+
+
+
 
