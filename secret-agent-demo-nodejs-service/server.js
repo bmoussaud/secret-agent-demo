@@ -9,9 +9,12 @@ process.env['A_TITLE'] = 'NodeJS App'
 
 try {
   var csb = require('./config-service-binding');
-
+  //toutes les valeurs
   const all = csb.all_bindings()
+  //toutes les valeurs pour le type='app-configuration'
   const appBindings = csb.bindings("app-configuration")
+  //toutes les valeurs pour le type='app-configuration' et un id specifi
+  //const application = csb.bindings("app-configuration","config-alt")
 
   skippedEntries = ['type']
   Object.entries(appBindings).forEach(([k, v]) => {
