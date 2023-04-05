@@ -1,8 +1,8 @@
-SOURCE_IMAGE = 'akseutap4registry.azurecr.io/secret-agent-source'
+SOURCE_IMAGE = 'akseutap5registry.azurecr.io/secret-agent-java-source'
 LOCAL_PATH ='.'
 OUTPUT_TO_NULL_COMMAND = os.getenv("OUTPUT_TO_NULL_COMMAND", default=' > /dev/null ')
-NAMESPACE = 'kcd-fr-23'
-K8S_TEST_CONTEXT = os.getenv("K8S_TEST_CONTEXT", default='aks-eu-tap-4')
+NAMESPACE = 'secret-agent'
+K8S_TEST_CONTEXT = 'aks-eu-tap-4'
 
 allow_k8s_contexts(K8S_TEST_CONTEXT)
 

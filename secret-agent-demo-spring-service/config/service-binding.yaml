@@ -1,19 +1,13 @@
 apiVersion: servicebinding.io/v1beta1
 kind: ServiceBinding
-metadata:
-  labels:
-    app.kubernetes.io/component: run
-    app.kubernetes.io/part-of: secret-agent-java
-    apps.tanzu.vmware.com/auto-configure-actuators: "true"
-    apps.tanzu.vmware.com/has-tests: "true"
-    apps.tanzu.vmware.com/workload-type: web
+metadata:  
   name: secret-agent-java-postgres-db
 spec:
   name: postgres-db
   service:
     apiVersion: sql.tanzu.vmware.com/v1
     kind: Postgres
-    name: kcd-fr-23-database
+    name: secret-agent-database
   workload:
     apiVersion: serving.knative.dev/v1
     kind: Service
