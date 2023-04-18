@@ -1,0 +1,24 @@
+apiVersion: sql.tanzu.vmware.com/v1
+kind: Postgres
+metadata:
+  name: secret-agent-database  
+spec:  
+  cpu: 800m  
+  memory: 800Mi  
+  monitorStorageSize: 1G
+  persistentVolumeClaimPolicy: delete
+  pgConfig:
+    appUser: admin
+    dbname: secret-agent-database
+    readOnlyUser: pgrouser
+    readWriteUser: pgrwuser
+    username: pgadmin
+  postgresVersion:
+    name: postgres-15  
+  sharedMemorySize: 64Mi
+  storageSize: 800M
+status:  
+  binding:
+    name: secret-agent-database-app-user-db-secret
+  currentState: Running
+  dbVersion: "15.1"  
